@@ -14,4 +14,9 @@ export const defaultTheme: DefaultTheme = {
       xxxlarge: 1000,
     },
   },
+  spacing: {
+    sm: 8,
+    md: 16,
+    lg: 24,
+  },
 };

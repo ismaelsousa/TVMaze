@@ -1,5 +1,10 @@
 import 'styled-components/native';
 declare module 'styled-components/native' {
+  export type ColorPalette =
+    | 'primary'
+    | 'secondary'
+    | 'onSecondary'
+    | 'caption';
   export interface DefaultTheme {
     colors: {
       primary: string;
@@ -12,6 +17,11 @@ declare module 'styled-components/native' {
         small: number;
         xxxlarge: number;
       };
+    };
+    spacing: {
+      sm: number;
+      md: number;
+      lg: number;
     };
   }
 }
