@@ -5,3 +5,7 @@ export const Content = styled.SafeAreaView`
   margin-left: ${({theme}) => theme.spacing.md}px;
   margin-right: ${({theme}) => theme.spacing.md}px;
 `;
+
+export const SearchList = styled.FlatList.attrs({
+  columnWrapperStyle: {justifyContent: 'space-between'},
+})``;

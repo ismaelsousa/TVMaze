@@ -1,18 +1,20 @@
 import React from 'react';
+import {FlatList} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
+import Cover from '../../common/components/Cover';
 import Input from '../../common/components/Input';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useSearchController from './search.controller';
-import {Content} from './styles';
+import {Content, SearchList} from './styles';
 
 // import {Container} from './styles'
 
 const SearchView: React.FC = () => {
   const {spacing} = useTheme();
 
-  const {searchText, setSearchText} = useSearchController();
+  const {searchText, setSearchText, shows} = useSearchController();
 
   return (
     <Container>
@@ -26,9 +28,20 @@ const SearchView: React.FC = () => {
           value={searchText}
           onChangeText={setSearchText}
           returnKeyType="done"
-          onSubmitEditing={() => {
-            //TODO: Implement search
-          }}
+        />
+        <Spacer height={spacing.md} />
+        <SearchList
+          data={shows}
+          numColumns={2}
+          ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
+          renderItem={({index, item}) => (
+            <Cover
+              key={index + item.show.id + item.show.name}
+              url={item.show.image?.medium}
+              title={item.show.name}
+            />
+          )}
+          ListFooterComponent={() => <Spacer height={spacing.md} />}
         />
       </Content>
     </Container>

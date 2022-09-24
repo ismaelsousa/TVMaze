@@ -1,3 +1,6 @@
-import {showByTextMocked} from '../constants/mocks/showByText.mock';
+import {ShowModel} from './show.model';
 
-export type ShowByTextModel = typeof showByTextMocked;
+export type ShowByTextModel = {
+  score: number;
+  show: ShowModel;
+};
