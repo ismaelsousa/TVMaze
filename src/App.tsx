@@ -1,15 +1,14 @@
 import React from 'react';
-import {View} from 'react-native';
 import {NavigationContainer} from '@react-navigation/native';
 import {ThemeProvider} from 'styled-components';
 import {defaultTheme} from './common/styles/theme/defaultTheme';
-// import {Container} from './styles'
+import BottomTabNavigator from './navigation/BottomTabNavigator';
 
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={defaultTheme}>
       <NavigationContainer>
-        <View />
+        <BottomTabNavigator />
       </NavigationContainer>
     </ThemeProvider>
   );

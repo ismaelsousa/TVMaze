@@ -4,8 +4,8 @@
   "compilerOptions": {
     /* Visit https://aka.ms/tsconfig.json to read more about this file */
 
+    "types": ["jest", "styled-components-react-native"],
     /* Completeness */
     "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
   },
-  "types": ["jest", "styled-components-react-native"],
 }
