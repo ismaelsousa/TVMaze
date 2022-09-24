@@ -32,7 +32,7 @@ const useSearchController = () => {
   /**
    * Debounce
    */
-  const debouncedSearchShows = useDebouncedCallback(handleSearchShows, 600);
+  const debouncedSearchShows = useDebouncedCallback(handleSearchShows, 1000);
 
   /**
    * Effects
@@ -43,9 +43,9 @@ const useSearchController = () => {
      * When the user clears the search text, we should clear the search results
      */
     if (searchText.length === 0) {
-      handleSearchShows();
+      debouncedSearchShows();
     }
-  }, [handleSearchShows, searchText.length]);
+  }, [debouncedSearchShows, searchText.length]);
 
   useEffect(() => {
     if (searchText.length > 0) {

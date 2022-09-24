@@ -14,7 +14,7 @@ import {Content, SearchList} from './styles';
 const SearchView: React.FC = () => {
   const {spacing} = useTheme();
 
-  const {searchText, setSearchText, shows} = useSearchController();
+  const {searchText, setSearchText, shows, loading} = useSearchController();
 
   return (
     <Container>
@@ -28,6 +28,7 @@ const SearchView: React.FC = () => {
           value={searchText}
           onChangeText={setSearchText}
           returnKeyType="done"
+          loading={loading}
         />
         <Spacer height={spacing.md} />
         <SearchList
