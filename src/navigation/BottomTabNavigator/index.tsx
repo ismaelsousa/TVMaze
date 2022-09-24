@@ -3,6 +3,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import FavoritesView from '../../screens/Favorites/favorites.view';
 import HomeView from '../../screens/Home/home.view';
 import {useTheme} from 'styled-components/native';
+import Icon from '../../common/components/Icon';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -19,8 +20,24 @@ const BottomTabNavigator = () => {
         },
         header: () => null,
       }}>
-      <BottomTab.Screen component={HomeView} name="Home" />
-      <BottomTab.Screen component={FavoritesView} name="Favorites" />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon icon="home" size={size} color={color} />
+          ),
+        }}
+        component={HomeView}
+        name="Home"
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon icon="favorite" size={size} color={color} />
+          ),
+        }}
+        component={FavoritesView}
+        name="Favorites"
+      />
     </BottomTab.Navigator>
   );
 };
