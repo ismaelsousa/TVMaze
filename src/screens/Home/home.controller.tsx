@@ -4,6 +4,9 @@ import {ShowModel} from '../../common/models/show.model';
 import {fetchShows} from '../../repositories/shows/shows.repository';
 
 const useHomeController = () => {
+  /**
+   * States
+   */
   const [shows, setShows] = useState<Array<ShowModel>>([]);
   const [loading, setLoading] = useState<boolean>(false);
 
@@ -11,6 +14,10 @@ const useHomeController = () => {
 
   const [isRefreshing, setIsRefreshing] = useState<boolean>(false);
   const [hasMore, setHasMore] = useState<boolean>(true);
+
+  /**
+   * Callbacks
+   */
 
   const loadShows = useCallback(
     async (page: number, shouldShowRefresh?: boolean) => {
@@ -45,6 +52,9 @@ const useHomeController = () => {
     [hasMore],
   );
 
+  /**
+   * Effects
+   */
   useEffect(() => {
     loadShows(0);
   }, [loadShows]);

@@ -4,6 +4,7 @@ declare global {
   export type BottomTabParamList = {
     Home: undefined;
     Favorites: undefined;
+    Search: undefined;
   };
 
   export type HomeBottomTabNavigationProps = BottomTabNavigationProp<

@@ -4,6 +4,7 @@ import FavoritesView from '../../screens/Favorites/favorites.view';
 import HomeView from '../../screens/Home/home.view';
 import {useTheme} from 'styled-components/native';
 import Icon from '../../common/components/Icon';
+import SearchView from '../../screens/Search/search.view';
 
 const BottomTab = createBottomTabNavigator<BottomTabParamList>();
 
@@ -28,6 +29,15 @@ const BottomTabNavigator = () => {
         }}
         component={HomeView}
         name="Home"
+      />
+      <BottomTab.Screen
+        options={{
+          tabBarIcon: ({color, size}) => (
+            <Icon icon="search" size={size} color={color} />
+          ),
+        }}
+        component={SearchView}
+        name="Search"
       />
       <BottomTab.Screen
         options={{

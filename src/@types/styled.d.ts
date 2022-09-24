@@ -4,12 +4,14 @@ declare module 'styled-components/native' {
     | 'primary'
     | 'secondary'
     | 'onSecondary'
+    | 'surface'
     | 'caption';
   export interface DefaultTheme {
     colors: {
       primary: string;
       secondary: string;
       onSecondary: string;
+      surface: string;
       caption: string;
     };
     borders: {
