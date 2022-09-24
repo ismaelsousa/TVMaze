@@ -1,17 +1,24 @@
 import React from 'react';
-import {FlatList, StatusBar, SafeAreaView, View, Image} from 'react-native';
+import {
+  StatusBar,
+  SafeAreaView,
+  View,
+  RefreshControl,
+  ActivityIndicator,
+} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import Spacer from '../../common/components/Spacer';
 import useHomeController from './home.controller';
-import {Logo} from './styles';
+import {List, Logo} from './styles';
 
 const HomeView = () => {
   const {colors, spacing} = useTheme();
 
   // Get the controller
-  const {loading, shows} = useHomeController();
+  const {loading, shows, isRefreshing, loadShows, currentPage} =
+    useHomeController();
 
   return (
     <Container>
@@ -20,18 +27,13 @@ const HomeView = () => {
           barStyle={'light-content'}
           backgroundColor={colors.secondary}
         />
-
-        <FlatList
+        <List
           data={shows}
           numColumns={2}
           style={{paddingHorizontal: spacing.sm}}
-          columnWrapperStyle={{justifyContent: 'space-between'}}
           ListHeaderComponent={() => (
             <View>
-              <Logo
-                resizeMode="contain"
-                source={require('../../assets/imgs/logo.png')}
-              />
+              <Logo />
             </View>
           )}
           renderItem={({index, item}) => (
@@ -42,7 +44,39 @@ const HomeView = () => {
             />
           )}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
-          ListFooterComponent={() => <Spacer height={spacing.lg} />}
+          ListFooterComponent={() => {
+            return (
+              <View>
+                {loading && (
+                  <>
+                    <Spacer height={spacing.lg} />
+                    <ActivityIndicator
+                      size={'small'}
+                      color={colors.onSecondary}
+                    />
+                  </>
+                )}
+                <Spacer height={spacing.lg} />
+              </View>
+            );
+          }}
+          refreshControl={
+            <RefreshControl
+              enabled={!isRefreshing}
+              tintColor={colors.onSecondary}
+              colors={[colors.primary, colors.onSecondary, colors.caption]}
+              refreshing={isRefreshing}
+              onRefresh={() => {
+                loadShows(0, true);
+              }}
+            />
+          }
+          onEndReached={() => {
+            if (!loading) {
+              loadShows(currentPage);
+            }
+          }}
+          onEndReachedThreshold={0.5}
         />
       </SafeAreaView>
     </Container>
