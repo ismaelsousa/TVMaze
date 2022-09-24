@@ -1,6 +1,5 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import {format} from 'date-fns';
-import React, {useMemo, useState} from 'react';
+import React from 'react';
 import {ScrollView, useWindowDimensions, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import BackButton from '../../common/components/BackButton';
@@ -8,6 +7,7 @@ import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
+import useDetailController from './detail.controller';
 import {Content, RowCover} from './styles';
 
 const DetailView: React.FC = () => {
@@ -22,37 +22,20 @@ const DetailView: React.FC = () => {
   /**
    * Theme
    */
-  const {colors, spacing} = useTheme();
+  const {spacing} = useTheme();
   const {width} = useWindowDimensions();
 
   /**
-   * States
+   * Get the controller
    */
-  const [moreSummary, setMoreSummary] = useState<boolean>(false);
-
-  /**
-   * Memos
-   */
-  const summaryWithoutHtml = useMemo(() => {
-    return show.summary.replace(/(<([^>]+)>)/gi, '');
-  }, [show.summary]);
-
-  const formattedDate = useMemo(() => {
-    if (show.status === 'Running') {
-      return format(new Date(), 'MM/dd/yyyy');
-    } else {
-      return format(new Date(show.premiered), 'PP');
-    }
-  }, [show]);
-
-  const genres = useMemo(() => {
-    return show.genres.join(', ');
-  }, [show]);
-
-  /**
-   * Callbacks
-   */
-  const toggleMoreSummary = () => setMoreSummary(old => !old);
+  const {
+    formattedDate,
+    genres,
+    moreSummary,
+    summaryWithoutHtml,
+    toggleMoreSummary,
+    schedule,
+  } = useDetailController({show});
 
   return (
     <Container>
@@ -65,10 +48,12 @@ const DetailView: React.FC = () => {
             <Cover url={show.image?.medium} />
             <Spacer width={spacing.md} />
             <View style={{maxWidth: width * 0.4}}>
-              <Text size={20}>{show.name}</Text>
-              <Spacer height={spacing.md} />
+              <Text size={24}>{show.name}</Text>
+              <Spacer height={spacing.sm} />
+              <Text color="caption">{schedule}</Text>
+              <Spacer height={spacing.lg} />
               <Text color="caption">{formattedDate}</Text>
-              <Spacer height={spacing.md} />
+              <Spacer height={spacing.sm} />
               <Text size={12} color="caption">
                 {genres}
               </Text>
@@ -77,9 +62,11 @@ const DetailView: React.FC = () => {
           <Spacer height={spacing.md} />
           <Text>
             {summaryWithoutHtml.slice(0, moreSummary ? undefined : 200)}
-            <Text onPress={toggleMoreSummary} color="caption">
-              {moreSummary ? ' ...less' : ' ...more'}
-            </Text>
+            {summaryWithoutHtml.length >= 200 && (
+              <Text onPress={toggleMoreSummary} color="caption">
+                {moreSummary ? ' ...less' : ' ...more'}
+              </Text>
+            )}
           </Text>
         </ScrollView>
       </Content>
