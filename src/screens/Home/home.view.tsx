@@ -1,15 +1,18 @@
 import React from 'react';
-import {StatusBar, View} from 'react-native';
-import {SafeAreaView} from 'react-native-safe-area-context';
+import {FlatList, StatusBar, SafeAreaView, View, Image} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
-import {showMocked} from '../../common/constants/mocks/show.mock';
+import Spacer from '../../common/components/Spacer';
+import useHomeController from './home.controller';
+import {Logo} from './styles';
 
-// import {Container} from './styles'
+const HomeView = () => {
+  const {colors, spacing} = useTheme();
 
-const HomeView: React.FC = () => {
-  const {colors} = useTheme();
+  // Get the controller
+  const {loading, shows} = useHomeController();
+
   return (
     <Container>
       <SafeAreaView>
@@ -17,15 +20,30 @@ const HomeView: React.FC = () => {
           barStyle={'light-content'}
           backgroundColor={colors.secondary}
         />
-        <View style={{flexDirection: 'row', justifyContent: 'space-evenly'}}>
-          <Cover url={showMocked.image.medium} title={showMocked.name} />
-          <Cover
-            url={
-              'https://static.tvmaze.com/uploads/images/medium_portrait/178/445621.jpg'
-            }
-            title={showMocked.name}
-          />
-        </View>
+
+        <FlatList
+          data={shows}
+          numColumns={2}
+          style={{paddingHorizontal: spacing.sm}}
+          columnWrapperStyle={{justifyContent: 'space-between'}}
+          ListHeaderComponent={() => (
+            <View>
+              <Logo
+                resizeMode="contain"
+                source={require('../../assets/imgs/logo.png')}
+              />
+            </View>
+          )}
+          renderItem={({index, item}) => (
+            <Cover
+              key={index + item.id + item.name}
+              url={item.image.medium}
+              title={item.name}
+            />
+          )}
+          ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
+          ListFooterComponent={() => <Spacer height={spacing.lg} />}
+        />
       </SafeAreaView>
     </Container>
   );

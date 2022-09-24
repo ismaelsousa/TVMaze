@@ -8,7 +8,7 @@ import {Container, CoverImage} from './styles';
 import {CoverProps} from './types';
 
 const aspectRatio = 9 / 12.5;
-const widthPercentage = 0.4;
+const widthPercentage = 0.45;
 
 const Cover = ({onPress, title, url}: CoverProps) => {
   const {width} = useWindowDimensions();
@@ -32,8 +32,8 @@ const Cover = ({onPress, title, url}: CoverProps) => {
           }}
         />
         <Spacer height={spacing.sm} />
-        <Text numberOfLines={2} color="caption">
-          {title} {title}
+        <Text numberOfLines={1} color="caption">
+          {title}
         </Text>
       </Container>
     </Pressable>
