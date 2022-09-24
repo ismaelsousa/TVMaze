@@ -1,3 +1,4 @@
+import {StyleSheet} from 'react-native';
 import styled from 'styled-components/native';
 
 export const Content = styled.SafeAreaView`
@@ -6,6 +7,6 @@ export const Content = styled.SafeAreaView`
   margin-right: ${({theme}) => theme.spacing.md}px;
 `;
 
-export const SearchList = styled.FlatList.attrs({
+export const styleSheet = StyleSheet.create({
   columnWrapperStyle: {justifyContent: 'space-between'},
-})``;
+});

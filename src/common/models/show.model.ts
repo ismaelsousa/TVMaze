@@ -35,7 +35,7 @@ export interface ShowModel {
   type: string;
   language: string;
   genres: string[];
-  status: string;
+  status?: 'Running' | 'Ended';
   runtime?: any;
   averageRuntime?: any;
   premiered?: any;

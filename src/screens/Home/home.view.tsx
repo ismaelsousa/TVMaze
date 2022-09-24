@@ -5,15 +5,22 @@ import {
   View,
   RefreshControl,
   ActivityIndicator,
+  FlatList,
 } from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import Spacer from '../../common/components/Spacer';
+import useMyNavigation from '../../common/hooks/useMyNavigation';
 import useHomeController from './home.controller';
-import {List, Logo} from './styles';
+
+import {styleSheet, Logo} from './styles';
 
 const HomeView = () => {
+  /**
+   * Navigation
+   */
+  const {navigate} = useMyNavigation();
   const {colors, spacing} = useTheme();
 
   // Get the controller
@@ -27,20 +34,22 @@ const HomeView = () => {
           barStyle={'light-content'}
           backgroundColor={colors.secondary}
         />
-        <List
+        <FlatList
           data={shows}
           numColumns={2}
+          columnWrapperStyle={styleSheet.columnWrapperStyle}
           style={{paddingHorizontal: spacing.sm}}
           ListHeaderComponent={() => (
             <View>
               <Logo />
             </View>
           )}
-          renderItem={({index, item}) => (
+          renderItem={({index, item}: any) => (
             <Cover
               key={index + item.id + item.name}
               url={item.image.medium}
               title={item.name}
+              onPress={() => navigate('Detail', {show: item})}
             />
           )}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
@@ -64,7 +73,7 @@ const HomeView = () => {
             <RefreshControl
               enabled={!isRefreshing}
               tintColor={colors.onSecondary}
-              colors={[colors.primary, colors.onSecondary, colors.caption]}
+              colors={[colors.onSecondary]}
               refreshing={isRefreshing}
               onRefresh={() => {
                 loadShows(0, true);

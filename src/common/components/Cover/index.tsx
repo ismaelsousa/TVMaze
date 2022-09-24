@@ -1,4 +1,4 @@
-import React, {useMemo} from 'react';
+import React, {memo, useMemo} from 'react';
 import {Pressable, useWindowDimensions} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import {colors} from '../../constants/styles/colors';
@@ -53,13 +53,17 @@ const Cover = ({onPress, title, url}: CoverProps) => {
             </IconAbsolute>
           )}
         </CenterIconAndImage>
-        <Spacer height={spacing.sm} />
-        <Text numberOfLines={1} color="caption">
-          {title}
-        </Text>
+        {!!title && (
+          <>
+            <Spacer height={spacing.sm} />
+            <Text numberOfLines={1} color="caption">
+              {title}
+            </Text>
+          </>
+        )}
       </Container>
     </Pressable>
   );
 };
 
-export default Cover;
+export default memo(Cover);

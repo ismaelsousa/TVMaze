@@ -1,5 +1,5 @@
 export interface CoverProps {
-  title: string;
+  title?: string;
   url?: string;
   onPress?: () => void;
 }

@@ -6,12 +6,14 @@ import Cover from '../../common/components/Cover';
 import Input from '../../common/components/Input';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
+import useMyNavigation from '../../common/hooks/useMyNavigation';
 import useSearchController from './search.controller';
-import {Content, SearchList} from './styles';
+import {Content, styleSheet} from './styles';
 
 // import {Container} from './styles'
 
 const SearchView: React.FC = () => {
+  const {navigate} = useMyNavigation();
   const {spacing} = useTheme();
 
   const {searchText, setSearchText, shows, loading} = useSearchController();
@@ -31,18 +33,23 @@ const SearchView: React.FC = () => {
           loading={loading}
         />
         <Spacer height={spacing.md} />
-        <SearchList
+        <FlatList
           data={shows}
           numColumns={2}
+          columnWrapperStyle={styleSheet.columnWrapperStyle}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           renderItem={({index, item}) => (
             <Cover
               key={index + item.show.id + item.show.name}
               url={item.show.image?.medium}
               title={item.show.name}
+              onPress={() => navigate('Detail', {show: item.show})}
             />
           )}
-          ListFooterComponent={() => <Spacer height={spacing.md} />}
+          ListFooterComponent={() => {
+            //TODO: Handle when there is no result
+            return <Spacer height={spacing.md} />;
+          }}
         />
       </Content>
     </Container>
