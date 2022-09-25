@@ -5,6 +5,7 @@ import magnify from '../../assets/icons/magnify/Vector.png';
 import picture from '../../assets/icons/picture/Vector.png';
 import arrowLeft from '../../assets/icons/arrow-left/Vector.png';
 import menuDown from '../../assets/icons/menu-down/menu-down.png';
+import menuUp from '../../assets/icons/menu-up/menu-up.png';
 import close from '../../assets/icons/close/Vector.png';
 
 export type NameIconTypes =
@@ -15,6 +16,7 @@ export type NameIconTypes =
   | 'picture'
   | 'arrowLeft'
   | 'menuDown'
+  | 'menuUp'
   | 'close';
 
 export default {
@@ -25,5 +27,6 @@ export default {
   picture,
   arrowLeft,
   menuDown,
+  menuUp,
   close,
 };

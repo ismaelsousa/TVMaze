@@ -6,19 +6,17 @@ import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import EpisodeCard from '../../common/components/EpisodeCard';
+import EpisodeCover from '../../common/components/EpisodeCover';
 import Icon from '../../common/components/Icon';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useDetailController from './detail.controller';
 import SeasonsModal from './localComponents/SeasonsModal';
 import {
-  ContainerTitleEpisode,
   Content,
   ContentButtonSeason,
   RowButtonSeason,
   RowCover,
-  RowEpisode,
-  TitleEpisode,
 } from './styles';
 
 const DetailView: React.FC = () => {
@@ -64,25 +62,9 @@ const DetailView: React.FC = () => {
         <BackButton onPress={goBack} />
         <Spacer height={spacing.md} />
         <FlatList
+          showsVerticalScrollIndicator={false}
           data={episodes}
-          renderItem={({item}) => (
-            <RowEpisode
-              key={item.id}
-              onPress={() => {
-                //TODO: Navigate to episode detail
-              }}>
-              <EpisodeCard url={item.image?.medium} name={item.name} />
-              <Spacer width={spacing.sm} />
-              <ContainerTitleEpisode>
-                <TitleEpisode numberOfLines={1}>
-                  {item?.number ? `${item.number}.` : 'Special:'} {item.name}
-                </TitleEpisode>
-                <Text size={12} color="caption">
-                  {item.runtime <= 60 ? `${item.runtime}m` : '+1h'}
-                </Text>
-              </ContainerTitleEpisode>
-            </RowEpisode>
-          )}
+          renderItem={({item}) => <EpisodeCard episode={item} />}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           ListHeaderComponent={() => {
             return (

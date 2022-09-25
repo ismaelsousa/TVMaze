@@ -1,17 +1,16 @@
-import {Platform} from 'react-native';
 import styled from 'styled-components/native';
-import {EpisodeCardProps} from './types';
+import Text from '../Text';
 
-export const Container = styled.Image<Partial<EpisodeCardProps>>`
-  width: ${({size}) =>
-    size === 'small' ? 100 : size === 'medium' ? 200 : 300}px;
-  background-color: ${({theme}) => theme.colors.surface};
-  border-radius: ${({theme}) =>
-    Platform.OS === 'ios' ? theme.borders.radius.small : 0}px;
+export const Container = styled.View``;
+
+export const RowEpisode = styled.Pressable`
+  flex-direction: row;
+  align-items: center;
 `;
 
-export const AbsoluteIconEpisodeCard = styled.View`
-  position: absolute;
-  left: 40%;
-  top: 30%;
+export const TitleEpisode = styled(Text)`
+  font-weight: bold;
+`;
+export const ContainerTitleEpisode = styled.View`
+  flex: 1;
 `;

@@ -1,30 +1,60 @@
-import React from 'react';
-import {View} from 'react-native';
-import {useTheme} from 'styled-components/native';
-import Icon from '../Icon';
-
-import {AbsoluteIconEpisodeCard, Container} from './styles';
+import React, {useMemo, useState} from 'react';
 import {EpisodeCardProps} from './types';
 
-const aspectRatio = 16 / 9;
-const EpisodeCard = ({name, url, size = 'small'}: EpisodeCardProps) => {
-  const {colors} = useTheme();
+import EpisodeCover from '../EpisodeCover';
+import Spacer from '../Spacer';
+import Text from '../Text';
+import {useTheme} from 'styled-components/native';
+import {
+  Container,
+  ContainerTitleEpisode,
+  RowEpisode,
+  TitleEpisode,
+} from './styles';
+import {View} from 'react-native';
+import {removeHtmlFromString} from '../../utils/html';
+import Icon from '../Icon';
+
+const EpisodeCard = ({episode, onPress}: EpisodeCardProps) => {
+  const {spacing, colors} = useTheme();
+
+  const [shouldShowDetails, setShouldShowDetails] = useState<boolean>(false);
+
+  const summaryWithoutHtml = useMemo(() => {
+    return removeHtmlFromString(episode.summary);
+  }, [episode.summary]);
+
   return (
-    <View>
-      <Container
-        size={size}
-        accessibilityLabel={name}
-        accessibilityRole="image"
-        source={{uri: url}}
-        resizeMode={'contain'}
-        style={{aspectRatio}}
-      />
-      {!url && (
-        <AbsoluteIconEpisodeCard>
-          <Icon icon="picture" color={colors.caption} />
-        </AbsoluteIconEpisodeCard>
+    <Container>
+      <RowEpisode
+        key={episode.id}
+        onPress={() => {
+          setShouldShowDetails(old => !old);
+          //TODO: Navigate to episode detail
+          onPress?.();
+        }}>
+        <EpisodeCover url={episode.image?.medium} name={episode.name} />
+        <Spacer width={spacing.sm} />
+        <ContainerTitleEpisode>
+          <TitleEpisode numberOfLines={1}>
+            {episode?.number ? `${episode.number}.` : 'Special:'} {episode.name}
+          </TitleEpisode>
+          <Text size={12} color="caption">
+            {episode.runtime <= 60 ? `${episode.runtime}m` : '+1h'}
+          </Text>
+        </ContainerTitleEpisode>
+        <Icon
+          icon={shouldShowDetails ? 'menuUp' : 'menuDown'}
+          color={colors.brand}
+        />
+      </RowEpisode>
+      {shouldShowDetails && (
+        <View>
+          <Spacer height={spacing.sm} />
+          <Text color="caption">{summaryWithoutHtml}</Text>
+        </View>
       )}
-    </View>
+    </Container>
   );
 };
 

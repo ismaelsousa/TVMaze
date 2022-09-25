@@ -1,6 +1,6 @@
 import {Platform} from 'react-native';
 import styled from 'styled-components/native';
-import Text from '../../common/components/Text';
+
 const isIOS = Platform.OS === 'ios';
 export const Content = styled.SafeAreaView`
   flex: 1;
@@ -9,17 +9,6 @@ export const Content = styled.SafeAreaView`
 
 export const RowCover = styled.View`
   flex-direction: row;
-`;
-
-export const RowEpisode = styled.Pressable`
-  flex-direction: row;
-`;
-
-export const TitleEpisode = styled(Text)`
-  font-weight: bold;
-`;
-export const ContainerTitleEpisode = styled.View`
-  flex: 1;
 `;
 
 export const RowButtonSeason = styled.Pressable`

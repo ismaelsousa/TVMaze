@@ -3,6 +3,7 @@ import {format} from 'date-fns';
 import {useEffect, useMemo, useState} from 'react';
 import {EpisodeModel} from '../../common/models/episode.model';
 import {SeasonModel} from '../../common/models/season.model';
+import {removeHtmlFromString} from '../../common/utils/html';
 import {fetchEpisodesBySeason} from '../../repositories/episodes/episodes.repository';
 import {fetchSeasons} from '../../repositories/seasons/seasons.repository';
 import {UseDetailController} from './types';
@@ -22,7 +23,7 @@ const useDetailController = ({show}: UseDetailController) => {
    * Memos
    */
   const summaryWithoutHtml = useMemo(() => {
-    return show.summary.replace(/(<([^>]+)>)/gi, '');
+    return removeHtmlFromString(show.summary);
   }, [show.summary]);
 
   const formattedDate = useMemo(() => {

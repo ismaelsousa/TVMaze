@@ -1,5 +1,6 @@
+import {EpisodeModel} from '../../models/episode.model';
+
 export interface EpisodeCardProps {
-  url?: string;
-  name?: string;
-  size?: 'small' | 'medium' | 'large';
+  episode: EpisodeModel;
+  onPress?: () => void;
 }

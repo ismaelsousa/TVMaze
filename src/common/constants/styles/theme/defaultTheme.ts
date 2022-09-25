@@ -8,6 +8,7 @@ export const defaultTheme: DefaultTheme = {
     onSecondary: colors.onSecondary,
     caption: colors.caption,
     surface: colors.surface,
+    brand: colors.brand,
   },
   borders: {
     radius: {
