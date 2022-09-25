@@ -69,13 +69,13 @@ const DetailView: React.FC = () => {
             <RowEpisode
               key={item.id}
               onPress={() => {
-                //TODO: Handle episode without img
+                //TODO: Navigate to episode detail
               }}>
-              <EpisodeCard url={item.image.medium} name={item.name} />
+              <EpisodeCard url={item.image?.medium} name={item.name} />
               <Spacer width={spacing.sm} />
               <ContainerTitleEpisode>
                 <TitleEpisode numberOfLines={1}>
-                  {item.number}. {item.name}
+                  {item?.number ? `${item.number}.` : 'Special:'} {item.name}
                 </TitleEpisode>
                 <Text size={12} color="caption">
                   {item.runtime <= 60 ? `${item.runtime}m` : '+1h'}
