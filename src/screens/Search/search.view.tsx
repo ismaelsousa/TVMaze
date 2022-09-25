@@ -4,7 +4,7 @@ import {useTheme} from 'styled-components/native';
 import Avatar from '../../common/components/Avatar';
 import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
-import Cover from '../../common/components/Cover';
+import ShowCover from '../../common/components/ShowCover';
 import Input from '../../common/components/Input';
 import NotFound from '../../common/components/NotFound';
 import Spacer from '../../common/components/Spacer';
@@ -87,7 +87,7 @@ const SearchView: React.FC = () => {
             ]}
             ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
             renderItem={({index, item}) => (
-              <Cover
+              <ShowCover
                 key={index + item.show.id + item.show.name}
                 url={item.show.image?.medium}
                 title={item.show.name}

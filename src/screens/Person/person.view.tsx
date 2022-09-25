@@ -5,7 +5,7 @@ import {useTheme} from 'styled-components/native';
 import Avatar from '../../common/components/Avatar';
 import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
-import Cover from '../../common/components/Cover';
+import ShowCover from '../../common/components/ShowCover';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
@@ -36,7 +36,7 @@ const PersonView: React.FC = () => {
           columnWrapperStyle={[flatListStyleSheet.columnWrapperStyle]}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           renderItem={({index, item}) => (
-            <Cover
+            <ShowCover
               key={index + item._embedded.show.id + item._embedded.show.name}
               url={item._embedded.show.image?.medium}
               title={item._embedded.show.name}

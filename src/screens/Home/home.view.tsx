@@ -9,7 +9,7 @@ import {
 } from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
-import Cover from '../../common/components/Cover';
+import ShowCover from '../../common/components/ShowCover';
 import Spacer from '../../common/components/Spacer';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
 import {flatListStyleSheet} from '../../common/utils/flatlist';
@@ -46,7 +46,7 @@ const HomeView = () => {
             </View>
           )}
           renderItem={({index, item}: any) => (
-            <Cover
+            <ShowCover
               key={index + item.id + item.name}
               url={item.image.medium}
               title={item.name}

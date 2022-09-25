@@ -5,7 +5,7 @@ export const Container = styled.View<{width: number}>`
   width: ${({width}) => width}px;
 `;
 
-export const CoverImage = styled.Image<{hasBackground: boolean}>`
+export const ShowCoverImage = styled.Image<{hasBackground: boolean}>`
   background-color: ${({hasBackground, theme}) =>
     hasBackground ? theme.colors.surface : 'transparent'};
   border-radius: ${({theme}) =>

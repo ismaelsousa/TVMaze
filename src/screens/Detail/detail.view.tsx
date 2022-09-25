@@ -4,7 +4,7 @@ import {FlatList, Platform, useWindowDimensions, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
-import Cover from '../../common/components/Cover';
+import ShowCover from '../../common/components/ShowCover';
 import EpisodeCard from '../../common/components/EpisodeCard';
 import Icon from '../../common/components/Icon';
 import Spacer from '../../common/components/Spacer';
@@ -74,7 +74,7 @@ const DetailView: React.FC = () => {
             return (
               <View>
                 <RowCover>
-                  <Cover url={show.image?.medium} />
+                  <ShowCover url={show.image?.medium} />
                   <Spacer width={spacing.md} />
                   <View style={{maxWidth: width * 0.4}}>
                     <Text size={24}>{show.name}</Text>

@@ -9,16 +9,16 @@ import Text from '../Text';
 import {
   CenterIconAndImage,
   Container,
-  CoverImage,
+  ShowCoverImage,
   IconAbsolute,
 } from './styles';
-import {CoverProps} from './types';
+import {ShowCoverProps} from './types';
 
 const aspectRatio = 9 / 12.5;
 const widthPercentage = 0.45;
 
-//TODO: rename to Show Cover
-const Cover = ({onPress, title, url}: CoverProps) => {
+//TODO: rename to Show ShowCover
+const ShowShowCover = ({onPress, title, url}: ShowCoverProps) => {
   /**
    * Hooks
    */
@@ -28,7 +28,7 @@ const Cover = ({onPress, title, url}: CoverProps) => {
   /**
    * Memos
    */
-  const widthCover = useMemo(() => {
+  const widthShowCover = useMemo(() => {
     return width * widthPercentage;
   }, [width]);
 
@@ -37,15 +37,15 @@ const Cover = ({onPress, title, url}: CoverProps) => {
       onPress={onPress}
       accessibilityLabel={title}
       accessibilityRole="button">
-      <Container width={widthCover}>
+      <Container width={widthShowCover}>
         <CenterIconAndImage>
-          <CoverImage
+          <ShowCoverImage
             hasBackground={!url}
             source={{uri: url}}
             resizeMode="contain"
             style={{
               aspectRatio: aspectRatio,
-              width: widthCover,
+              width: widthShowCover,
             }}
           />
           {!url && (
@@ -67,4 +67,4 @@ const Cover = ({onPress, title, url}: CoverProps) => {
   );
 };
 
-export default memo(Cover);
+export default memo(ShowShowCover);

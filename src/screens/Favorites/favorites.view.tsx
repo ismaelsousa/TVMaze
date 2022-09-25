@@ -3,7 +3,7 @@ import {FlatList, StatusBar, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
-import Cover from '../../common/components/Cover';
+import ShowCover from '../../common/components/ShowCover';
 import Icon from '../../common/components/Icon';
 import NotFound from '../../common/components/NotFound';
 import Spacer from '../../common/components/Spacer';
@@ -50,7 +50,7 @@ const FavoritesView: React.FC = () => {
           columnWrapperStyle={flatListStyleSheet.columnWrapperStyle}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           renderItem={({index, item}) => (
-            <Cover
+            <ShowCover
               key={index + item.id + item.name}
               url={item.image?.medium}
               title={item.name}
