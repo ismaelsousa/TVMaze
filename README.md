@@ -139,8 +139,16 @@ TVMaze
 
 ```
 
-
+  <img 
+       width='200px'
+       src='https://user-images.githubusercontent.com/28990749/192165315-76fe3419-7cdc-4a56-b37b-f0a54199c187.png' 
+       alt='download the apk android'
+  />
+  
 ### Download the app
+
+
+
 
 
 [Releases](https://github.com/ismaelsousa/TVMaze/releases)
