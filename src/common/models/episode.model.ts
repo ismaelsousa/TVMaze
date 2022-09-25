@@ -28,6 +28,6 @@ export interface EpisodeModel {
   runtime: number;
   rating: Rating;
   image?: Image;
-  summary: string;
+  summary?: string;
   _links: Links;
 }

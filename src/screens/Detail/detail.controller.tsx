@@ -29,7 +29,10 @@ const useDetailController = ({show}: UseDetailController) => {
    * Memos
    */
   const summaryWithoutHtml = useMemo(() => {
-    return removeHtmlFromString(show.summary);
+    if (show.summary) {
+      return removeHtmlFromString(show?.summary);
+    }
+    return '';
   }, [show.summary]);
 
   const formattedDate = useMemo(() => {

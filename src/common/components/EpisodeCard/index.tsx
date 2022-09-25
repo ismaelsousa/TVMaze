@@ -21,7 +21,10 @@ const EpisodeCard = ({episode, onPress}: EpisodeCardProps) => {
   const [shouldShowDetails, setShouldShowDetails] = useState<boolean>(false);
 
   const summaryWithoutHtml = useMemo(() => {
-    return removeHtmlFromString(episode.summary);
+    if (episode.summary) {
+      return removeHtmlFromString(episode?.summary);
+    }
+    return '';
   }, [episode.summary]);
 
   return (

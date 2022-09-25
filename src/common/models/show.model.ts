@@ -52,7 +52,7 @@ export interface ShowModel {
     medium: string;
     original: string;
   };
-  summary: string;
+  summary?: string;
   updated: number;
   _links: Links;
 }
