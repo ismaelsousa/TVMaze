@@ -6,7 +6,8 @@ declare module 'styled-components/native' {
     | 'onSecondary'
     | 'surface'
     | 'caption'
-    | 'brand';
+    | 'brand'
+    | 'alert';
   export interface DefaultTheme {
     colors: {
       primary: string;
@@ -15,6 +16,7 @@ declare module 'styled-components/native' {
       surface: string;
       caption: string;
       brand: string;
+      alert: string;
     };
     borders: {
       radius: {

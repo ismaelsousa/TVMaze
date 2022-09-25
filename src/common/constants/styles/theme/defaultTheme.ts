@@ -9,6 +9,7 @@ export const defaultTheme: DefaultTheme = {
     caption: colors.caption,
     surface: colors.surface,
     brand: colors.brand,
+    alert: colors.alert,
   },
   borders: {
     radius: {

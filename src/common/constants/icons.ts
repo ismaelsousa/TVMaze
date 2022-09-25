@@ -10,6 +10,8 @@ import close from '../../assets/icons/close/Vector.png';
 import star from '../../assets/icons/star/Vector.png';
 import starOutline from '../../assets/icons/star-outline/Vector.png';
 import person from '../../assets/icons/person/account-circle.png';
+import inbox from '../../assets/icons/inbox/Vector.png';
+import noResults from '../../assets/icons/no-results/Vector.png';
 
 export type NameIconTypes =
   | 'home'
@@ -23,7 +25,9 @@ export type NameIconTypes =
   | 'close'
   | 'star'
   | 'starOutline'
-  | 'person';
+  | 'person'
+  | 'inbox'
+  | 'noResults';
 
 export default {
   home,
@@ -38,4 +42,6 @@ export default {
   star,
   starOutline,
   person,
+  inbox,
+  noResults,
 };

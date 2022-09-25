@@ -14,6 +14,7 @@ import {
 import {View} from 'react-native';
 import {removeHtmlFromString} from '../../utils/html';
 import Icon from '../Icon';
+import {noSummary} from '../../utils/message';
 
 const EpisodeCard = ({episode, onPress}: EpisodeCardProps) => {
   const {spacing, colors} = useTheme();
@@ -24,7 +25,7 @@ const EpisodeCard = ({episode, onPress}: EpisodeCardProps) => {
     if (episode.summary) {
       return removeHtmlFromString(episode?.summary);
     }
-    return '';
+    return noSummary;
   }, [episode.summary]);
 
   return (
@@ -33,7 +34,6 @@ const EpisodeCard = ({episode, onPress}: EpisodeCardProps) => {
         key={episode.id}
         onPress={() => {
           setShouldShowDetails(old => !old);
-          //TODO: Navigate to episode detail
           onPress?.();
         }}>
         <EpisodeCover url={episode.image?.medium} name={episode.name} />

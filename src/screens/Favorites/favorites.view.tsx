@@ -1,10 +1,11 @@
 import React from 'react';
-import {FlatList, StatusBar} from 'react-native';
+import {FlatList, StatusBar, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
 import Cover from '../../common/components/Cover';
 import Icon from '../../common/components/Icon';
+import NotFound from '../../common/components/NotFound';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
@@ -57,8 +58,15 @@ const FavoritesView: React.FC = () => {
             />
           )}
           ListFooterComponent={() => {
-            //TODO: Handle when there is no result
             return <Spacer height={spacing.md} />;
+          }}
+          ListEmptyComponent={() => {
+            return (
+              <View>
+                <Spacer height={spacing.lg} />
+                <NotFound icon="inbox" title="You don't have favorite yet" />
+              </View>
+            );
           }}
         />
       </Content>

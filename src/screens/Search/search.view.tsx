@@ -6,12 +6,14 @@ import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
 import Cover from '../../common/components/Cover';
 import Input from '../../common/components/Input';
+import NotFound from '../../common/components/NotFound';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
 import {flatListStyleSheet} from '../../common/utils/flatlist';
 import useSearchController from './search.controller';
 import {
+  ContainerRowButtons,
   ContentButtonFilter,
   RowButtonFilter,
   RowPerson,
@@ -21,7 +23,7 @@ import {
 
 const SearchView: React.FC = () => {
   const {navigate} = useMyNavigation();
-  const {spacing} = useTheme();
+  const {spacing, colors} = useTheme();
 
   const {
     searchText,
@@ -48,12 +50,7 @@ const SearchView: React.FC = () => {
           loading={loading}
         />
         <Spacer height={spacing.md} />
-        <View
-          style={{
-            //TODO: fix this
-            flexDirection: 'row',
-            justifyContent: 'space-between',
-          }}>
+        <ContainerRowButtons active={!!people.length || !!shows.length}>
           <RowButtonFilter
             active={searchType === 'shows'}
             onPress={() => setSearchType('shows')}>
@@ -78,7 +75,7 @@ const SearchView: React.FC = () => {
               </TextButtonFilter>
             </ContentButtonFilter>
           </RowButtonFilter>
-        </View>
+        </ContainerRowButtons>
         {searchType === 'shows' ? (
           <FlatList
             key={'list-shows'}
@@ -98,8 +95,22 @@ const SearchView: React.FC = () => {
               />
             )}
             ListFooterComponent={() => {
-              //TODO: Handle when there is no result
               return <Spacer height={spacing.md} />;
+            }}
+            ListEmptyComponent={() => {
+              if (!searchText.length) {
+                return (
+                  <View>
+                    <Spacer height={spacing.lg} />
+                    <NotFound
+                      icon="noResults"
+                      title={'Search for a show or a person'}
+                    />
+                  </View>
+                );
+              }
+
+              return null;
             }}
           />
         ) : (
@@ -128,6 +139,21 @@ const SearchView: React.FC = () => {
               );
             }}
             ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
+            ListEmptyComponent={() => {
+              if (!searchText.length) {
+                return (
+                  <View>
+                    <Spacer height={spacing.lg} />
+                    <NotFound
+                      icon="noResults"
+                      title={'Search for a show or a person'}
+                    />
+                  </View>
+                );
+              }
+
+              return null;
+            }}
           />
         )}
       </Content>

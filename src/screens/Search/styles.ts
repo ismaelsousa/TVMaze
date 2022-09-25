@@ -4,6 +4,11 @@ import {isIOS} from '../../common/utils/platform';
 
 export const Container = styled.View``;
 
+export const ContainerRowButtons = styled.View<{active: boolean}>`
+  opacity: ${({active}) => (active ? 1 : 0.0)};
+  flex-direction: row;
+  justify-content: space-between;
+`;
 export const RowButtonFilter = styled.Pressable<{active: boolean}>`
   flex-direction: row;
   align-items: center;

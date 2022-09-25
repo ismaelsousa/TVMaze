@@ -5,6 +5,7 @@ import useFavoritesShows from '../../common/hooks/useFavoritesShows';
 import {EpisodeModel} from '../../common/models/episode.model';
 import {SeasonModel} from '../../common/models/season.model';
 import {removeHtmlFromString} from '../../common/utils/html';
+import {noSummary} from '../../common/utils/message';
 import {fetchEpisodesBySeason} from '../../repositories/episodes/episodes.repository';
 import {fetchSeasons} from '../../repositories/seasons/seasons.repository';
 import {UseDetailController} from './types';
@@ -32,12 +33,12 @@ const useDetailController = ({show}: UseDetailController) => {
     if (show.summary) {
       return removeHtmlFromString(show?.summary);
     }
-    return '';
+    return noSummary;
   }, [show.summary]);
 
   const formattedDate = useMemo(() => {
     if (show.status === 'Running') {
-      return format(new Date(), 'MM/dd/yyyy');
+      return format(new Date(), 'PP');
     } else if (show?.ended) {
       return format(new Date(show.ended), 'PP');
     } else {

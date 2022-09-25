@@ -68,7 +68,6 @@ const PersonView: React.FC = () => {
             );
           }}
           ListFooterComponent={() => {
-            //TODO: Handle when there is no result
             return <Spacer height={spacing.md} />;
           }}
         />
