@@ -104,7 +104,8 @@ Model–view–viewmodel (MVVM)
 
 
 ```plainText
-app
+TVMaze
+.
 .
 ├── android                     # Native android files
 ├── ios                         # Native ios files
