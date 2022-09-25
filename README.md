@@ -125,10 +125,7 @@ TVMaze
 │   ├── screens
 │   │   ├── view
 │   │   ├── controller
-│   │   ├── styles
-│   ├── navigation
-│   ├── screens
-│   ├── services               
+│   │   ├── styles              
 │   ├── App                     # Aplication entry
 .
 .
