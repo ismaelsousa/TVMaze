@@ -61,11 +61,13 @@ Ios | Android
 
 I did it with inspiration on **Netflix**
 
+![image](https://user-images.githubusercontent.com/28990749/192162398-ea5d21bc-7213-4aa4-8982-267bf779f55a.png)
+
 [Link to Figma](https://www.figma.com/file/0jGlxxKJD82RpG9FTRfecD/TVMaze?node-id=2%3A7)
 
 
 
-
+## React Native
 
 
 <p align='center'>
