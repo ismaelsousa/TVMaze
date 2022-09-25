@@ -21,3 +21,12 @@ export const ContentButtonFilter = styled.View`
 `;
 
 export const TextButtonFilter = styled(Text)<{active: boolean}>``;
+
+export const RowPerson = styled.View`
+  flex-direction: row;
+  flex: 1;
+  align-items: center;
+`;
+export const RowPersonName = styled.View`
+  flex: 1;
+`;

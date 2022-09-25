@@ -1,17 +1,23 @@
 import React from 'react';
 import {FlatList, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
+import Avatar from '../../common/components/Avatar';
 import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
 import Cover from '../../common/components/Cover';
-import Icon from '../../common/components/Icon';
 import Input from '../../common/components/Input';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
 import {flatListStyleSheet} from '../../common/utils/flatlist';
 import useSearchController from './search.controller';
-import {ContentButtonFilter, RowButtonFilter, TextButtonFilter} from './styles';
+import {
+  ContentButtonFilter,
+  RowButtonFilter,
+  RowPerson,
+  RowPersonName,
+  TextButtonFilter,
+} from './styles';
 
 const SearchView: React.FC = () => {
   const {navigate} = useMyNavigation();
@@ -74,6 +80,7 @@ const SearchView: React.FC = () => {
         </View>
         {searchType === 'shows' ? (
           <FlatList
+            key={'list-shows'}
             data={shows}
             numColumns={2}
             columnWrapperStyle={[
@@ -95,7 +102,31 @@ const SearchView: React.FC = () => {
             }}
           />
         ) : (
-          <View />
+          <FlatList
+            key={'list-people'}
+            data={people}
+            ListHeaderComponent={() => <Spacer height={spacing.md} />}
+            keyExtractor={item => item.person.id.toString()}
+            renderItem={({item}) => {
+              return (
+                <RowPerson>
+                  <Avatar
+                    name={item.person?.name}
+                    url={item.person.image?.medium}
+                  />
+                  <Spacer width={spacing.md} />
+                  <RowPersonName>
+                    <Text numberOfLines={1} color="onSecondary" size={16}>
+                      {item.person.name}
+                    </Text>
+                    <Spacer height={spacing.sm} />
+                    <Text color="caption">{item.person.country?.code}</Text>
+                  </RowPersonName>
+                </RowPerson>
+              );
+            }}
+            ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
+          />
         )}
       </Content>
     </Container>

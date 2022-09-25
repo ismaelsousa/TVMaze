@@ -9,6 +9,7 @@ import menuUp from '../../assets/icons/menu-up/menu-up.png';
 import close from '../../assets/icons/close/Vector.png';
 import star from '../../assets/icons/star/Vector.png';
 import starOutline from '../../assets/icons/star-outline/Vector.png';
+import person from '../../assets/icons/person/account-circle.png';
 
 export type NameIconTypes =
   | 'home'
@@ -21,7 +22,8 @@ export type NameIconTypes =
   | 'menuUp'
   | 'close'
   | 'star'
-  | 'starOutline';
+  | 'starOutline'
+  | 'person';
 
 export default {
   home,
@@ -35,4 +37,5 @@ export default {
   close,
   star,
   starOutline,
+  person,
 };

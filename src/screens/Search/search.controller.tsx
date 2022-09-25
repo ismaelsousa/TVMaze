@@ -1,6 +1,6 @@
 import {useCallback, useEffect, useState} from 'react';
 import {useDebouncedCallback} from 'use-debounce';
-import {PersonModel} from '../../common/models/person.model';
+import {PeopleByTextModel} from '../../common/models/peopleByText.model';
 import {ShowByTextModel} from '../../common/models/showByText.model';
 import {fetchPeopleByText} from '../../repositories/search/peopleByText/peopleByText.repository';
 import {fetchShowsByText} from '../../repositories/search/showsByText/showsByText.repository';
@@ -10,7 +10,7 @@ const useSearchController = () => {
    * States
    */
   const [shows, setShows] = useState<Array<ShowByTextModel>>([]);
-  const [people, setPeople] = useState<Array<PersonModel>>([]);
+  const [people, setPeople] = useState<Array<PeopleByTextModel>>([]);
   const [searchText, setSearchText] = useState<string>('');
   const [loading, setLoading] = useState<boolean>(false);
   const [searchType, setSearchType] = useState<'people' | 'shows'>('shows');
@@ -63,28 +63,17 @@ const useSearchController = () => {
      * When the user clears the search text, we should clear the search results
      */
     if (searchText.length === 0) {
-      if (searchType === 'shows') {
-        debouncedSearchShows();
-      } else {
-        debouncedSearchPeople();
-      }
+      debouncedSearchShows();
+      debouncedSearchPeople();
     }
-  }, [
-    debouncedSearchPeople,
-    debouncedSearchShows,
-    searchText.length,
-    searchType,
-  ]);
+  }, [debouncedSearchPeople, debouncedSearchShows, searchText.length]);
 
   useEffect(() => {
     if (searchText.length > 0) {
-      if (searchType === 'shows') {
-        debouncedSearchShows(searchText);
-      } else {
-        debouncedSearchPeople(searchText);
-      }
+      debouncedSearchShows(searchText);
+      debouncedSearchPeople(searchText);
     }
-  }, [debouncedSearchPeople, debouncedSearchShows, searchText, searchType]);
+  }, [debouncedSearchPeople, debouncedSearchShows, searchText]);
 
   /**
    * Binding with the view
