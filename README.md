@@ -57,9 +57,11 @@ Ios | Android
 <video src='https://user-images.githubusercontent.com/28990749/192161192-b3bf0dba-d67c-4198-a878-72137a879383.mov' width=180/> | <video src='https://user-images.githubusercontent.com/28990749/192161187-53454db5-bf57-48b2-9c09-b8d014fa9a4c.mov' width=180/>
 
 
+## Design
 
+I did it with inspiration on **Netflix**
 
-
+[Link to Figma](https://www.figma.com/file/0jGlxxKJD82RpG9FTRfecD/TVMaze?node-id=2%3A7)
 
 
 
