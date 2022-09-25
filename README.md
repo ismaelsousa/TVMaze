@@ -68,6 +68,73 @@ I did it with inspiration on **Netflix**
 
 
 
+<p align='center'>
+  <img 
+       width='300px'
+       src='https://assets-global.website-files.com/5d9bc5d562ffc2869b470941/5e1f9804b36ff7196d4b72a0_logo-react-native-tech.png' 
+       alt='react native logo'
+  />
+</p>
+
+
+
+
+[React-Native](https://reactnative.dev)
+  - Version ~> "0.70.1"
+
+## 🏗 Running
+
+- Pre running (Android | Ios)
+  - run `npm install`
+- IOS:
+  - run `npx pod-install && npx react-native run-ios`
+- Android:   
+  - run `npx react-native run-android`
+
+## Folder structure
+
+Model–view–viewmodel (MVVM)
+
+
+[![Watch the video](https://user-images.githubusercontent.com/28990749/192161892-567a1e12-ed46-4f74-87bf-fbe99bb9513a.png)](https://youtu.be/RGRfXh54d9U)
+
+[What the video about mvvm | Portuguese](https://youtu.be/RGRfXh54d9U)
+
+
+```plainText
+app
+.
+├── android                     # Native android files
+├── ios                         # Native ios files
+├── src                         # Source files
+│   ├── @types                  # Contains all global definitions of types and interfaces
+│   ├── assets                  # Contains Js bundles assets. e.g: icons, images etc...
+│   ├── common                  
+│   │   ├── components    
+│   │   ├── constants
+│   │   ├── contexts
+│   │   ├── hooks
+│   │   ├── models
+│   │   ├── utils
+│   ├── Navigation     
+│   │   ├── BottomTabNavigator
+│   ├── repositories           # Contains external and api services
+│   ├── screens
+│   │   ├── view
+│   │   ├── controller
+│   │   ├── styles
+│   ├── navigation
+│   ├── screens
+│   ├── services               
+│   ├── App                     # Aplication entry
+.
+.
+├── index                       # Bundle entry
+.
+.
+└── README.md
+
+```
 
 
 
