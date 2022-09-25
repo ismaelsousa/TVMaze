@@ -140,7 +140,10 @@ TVMaze
 ```
 
 
+### Download the app
 
+
+[Releases](https://github.com/ismaelsousa/TVMaze/releases)
 
 
 
