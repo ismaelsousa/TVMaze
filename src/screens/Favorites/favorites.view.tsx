@@ -1,5 +1,5 @@
 import React from 'react';
-import {FlatList, StatusBar, View} from 'react-native';
+import {FlatList, StatusBar} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
 import Content from '../../common/components/Content';
@@ -30,7 +30,19 @@ const FavoritesView: React.FC = () => {
           Favorites
         </Text>
         <Spacer height={spacing.md} />
-
+        <RowButtonOrder
+          onPress={() =>
+            setSortedOrder(old => (old === 'asc' ? 'desc' : 'asc'))
+          }>
+          <ContentButtonOrder>
+            <Text color="caption" size={18}>
+              {sortedOrder === 'asc' ? 'A-Z' : 'Z-A'}
+            </Text>
+            <Spacer width={spacing.sm} />
+            <Icon icon={'menuDown'} color={colors.caption} />
+          </ContentButtonOrder>
+        </RowButtonOrder>
+        <Spacer height={spacing.sm} />
         <FlatList
           data={favoritesList}
           numColumns={2}
@@ -44,25 +56,6 @@ const FavoritesView: React.FC = () => {
               onPress={() => navigate('Detail', {show: item})}
             />
           )}
-          ListHeaderComponent={() => {
-            return (
-              <View>
-                <RowButtonOrder
-                  onPress={() =>
-                    setSortedOrder(old => (old === 'asc' ? 'desc' : 'asc'))
-                  }>
-                  <ContentButtonOrder>
-                    <Text color="caption" size={18}>
-                      {sortedOrder === 'asc' ? 'A-Z' : 'Z-A'}
-                    </Text>
-                    <Spacer width={spacing.sm} />
-                    <Icon icon={'menuDown'} color={colors.caption} />
-                  </ContentButtonOrder>
-                </RowButtonOrder>
-                <Spacer height={spacing.md} />
-              </View>
-            );
-          }}
           ListFooterComponent={() => {
             //TODO: Handle when there is no result
             return <Spacer height={spacing.md} />;
