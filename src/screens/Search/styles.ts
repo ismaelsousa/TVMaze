@@ -22,7 +22,7 @@ export const ContentButtonFilter = styled.View`
 
 export const TextButtonFilter = styled(Text)<{active: boolean}>``;
 
-export const RowPerson = styled.View`
+export const RowPerson = styled.Pressable`
   flex-direction: row;
   flex: 1;
   align-items: center;

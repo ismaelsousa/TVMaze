@@ -4,11 +4,12 @@ import {AvatarProps} from './types';
 import {AbsoluteIcon, Container, Content} from './styles';
 import {useTheme} from 'styled-components/native';
 
-const Avatar = ({name, url}: AvatarProps) => {
+const Avatar = ({name, url, size = 'small'}: AvatarProps) => {
   const {colors} = useTheme();
   return (
     <Content>
       <Container
+        size={size}
         source={{uri: url}}
         accessibilityRole="image"
         accessibilityLabel={name}

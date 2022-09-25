@@ -21,7 +21,7 @@ import {
 
 const SearchView: React.FC = () => {
   const {navigate} = useMyNavigation();
-  const {spacing, colors} = useTheme();
+  const {spacing} = useTheme();
 
   const {
     searchText,
@@ -37,7 +37,7 @@ const SearchView: React.FC = () => {
     <Container>
       <Content>
         <Spacer height={spacing.md} />
-        <Text color="onSecondary" size={spacing.lg}>
+        <Text color="onSecondary" size={24}>
           Search
         </Text>
         <Spacer height={spacing.md} />
@@ -50,6 +50,7 @@ const SearchView: React.FC = () => {
         <Spacer height={spacing.md} />
         <View
           style={{
+            //TODO: fix this
             flexDirection: 'row',
             justifyContent: 'space-between',
           }}>
@@ -109,7 +110,8 @@ const SearchView: React.FC = () => {
             keyExtractor={item => item.person.id.toString()}
             renderItem={({item}) => {
               return (
-                <RowPerson>
+                <RowPerson
+                  onPress={() => navigate('Person', {person: item.person})}>
                   <Avatar
                     name={item.person?.name}
                     url={item.person.image?.medium}
