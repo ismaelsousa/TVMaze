@@ -4,6 +4,7 @@ import search from '../../assets/icons/search/Vector.png';
 import magnify from '../../assets/icons/magnify/Vector.png';
 import picture from '../../assets/icons/picture/Vector.png';
 import arrowLeft from '../../assets/icons/arrow-left/Vector.png';
+import menuDown from '../../assets/icons/menu-down/menu-down.png';
 
 export type NameIconTypes =
   | 'home'
@@ -11,7 +12,8 @@ export type NameIconTypes =
   | 'search'
   | 'magnify'
   | 'picture'
-  | 'arrowLeft';
+  | 'arrowLeft'
+  | 'menuDown';
 
 export default {
   home,
@@ -20,4 +22,5 @@ export default {
   magnify,
   picture,
   arrowLeft,
+  menuDown,
 };

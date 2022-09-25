@@ -32,7 +32,7 @@ const useSearchController = () => {
   /**
    * Debounce
    */
-  const debouncedSearchShows = useDebouncedCallback(handleSearchShows, 1000);
+  const debouncedSearchShows = useDebouncedCallback(handleSearchShows, 700);
 
   /**
    * Effects
