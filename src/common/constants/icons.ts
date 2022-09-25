@@ -7,6 +7,8 @@ import arrowLeft from '../../assets/icons/arrow-left/Vector.png';
 import menuDown from '../../assets/icons/menu-down/menu-down.png';
 import menuUp from '../../assets/icons/menu-up/menu-up.png';
 import close from '../../assets/icons/close/Vector.png';
+import star from '../../assets/icons/star/Vector.png';
+import starOutline from '../../assets/icons/star-outline/Vector.png';
 
 export type NameIconTypes =
   | 'home'
@@ -17,7 +19,9 @@ export type NameIconTypes =
   | 'arrowLeft'
   | 'menuDown'
   | 'menuUp'
-  | 'close';
+  | 'close'
+  | 'star'
+  | 'starOutline';
 
 export default {
   home,
@@ -29,4 +33,6 @@ export default {
   menuDown,
   menuUp,
   close,
+  star,
+  starOutline,
 };

@@ -12,9 +12,10 @@ import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import Spacer from '../../common/components/Spacer';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
+import {flatListStyleSheet} from '../../common/utils/flatlist';
 import useHomeController from './home.controller';
 
-import {styleSheet, Logo} from './styles';
+import {Logo} from './styles';
 
 const HomeView = () => {
   /**
@@ -37,7 +38,7 @@ const HomeView = () => {
         <FlatList
           data={shows}
           numColumns={2}
-          columnWrapperStyle={styleSheet.columnWrapperStyle}
+          columnWrapperStyle={flatListStyleSheet.columnWrapperStyle}
           style={{paddingHorizontal: spacing.sm}}
           ListHeaderComponent={() => (
             <View>

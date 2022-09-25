@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-shadow */
 import {format} from 'date-fns';
 import {useEffect, useMemo, useState} from 'react';
+import useFavoritesShows from '../../common/hooks/useFavoritesShows';
 import {EpisodeModel} from '../../common/models/episode.model';
 import {SeasonModel} from '../../common/models/season.model';
 import {removeHtmlFromString} from '../../common/utils/html';
@@ -19,6 +20,11 @@ const useDetailController = ({show}: UseDetailController) => {
   const [selectedSeason, setSelectedSeason] = useState<SeasonModel>();
   const [episodes, setEpisodes] = useState<Array<EpisodeModel>>([]);
 
+  /**
+   * Contexts
+   */
+  const {addFavoriteShow, favoritesShows, removeFavoriteShow} =
+    useFavoritesShows();
   /**
    * Memos
    */
@@ -88,6 +94,9 @@ const useDetailController = ({show}: UseDetailController) => {
     selectedSeason,
     setSelectedSeason,
     episodes,
+    addFavoriteShow,
+    favoritesShows,
+    removeFavoriteShow,
   };
 };
 

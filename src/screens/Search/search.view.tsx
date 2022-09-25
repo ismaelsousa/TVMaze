@@ -2,15 +2,14 @@ import React from 'react';
 import {FlatList} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import Container from '../../common/components/Container';
+import Content from '../../common/components/Content';
 import Cover from '../../common/components/Cover';
 import Input from '../../common/components/Input';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
+import {flatListStyleSheet} from '../../common/utils/flatlist';
 import useSearchController from './search.controller';
-import {Content, styleSheet} from './styles';
-
-// import {Container} from './styles'
 
 const SearchView: React.FC = () => {
   const {navigate} = useMyNavigation();
@@ -36,7 +35,7 @@ const SearchView: React.FC = () => {
         <FlatList
           data={shows}
           numColumns={2}
-          columnWrapperStyle={styleSheet.columnWrapperStyle}
+          columnWrapperStyle={flatListStyleSheet.columnWrapperStyle}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           renderItem={({index, item}) => (
             <Cover

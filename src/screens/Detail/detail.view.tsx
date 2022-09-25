@@ -6,7 +6,6 @@ import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import EpisodeCard from '../../common/components/EpisodeCard';
-import EpisodeCover from '../../common/components/EpisodeCover';
 import Icon from '../../common/components/Icon';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
@@ -17,6 +16,7 @@ import {
   ContentButtonSeason,
   RowButtonSeason,
   RowCover,
+  RowFavorite,
 } from './styles';
 
 const DetailView: React.FC = () => {
@@ -53,6 +53,9 @@ const DetailView: React.FC = () => {
     selectedSeason,
     setSelectedSeason,
     episodes,
+    addFavoriteShow,
+    favoritesShows,
+    removeFavoriteShow,
   } = useDetailController({show});
 
   return (
@@ -67,6 +70,7 @@ const DetailView: React.FC = () => {
           renderItem={({item}) => <EpisodeCard episode={item} />}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
           ListHeaderComponent={() => {
+            const isFavorite = favoritesShows[show.id];
             return (
               <View>
                 <RowCover>
@@ -74,6 +78,22 @@ const DetailView: React.FC = () => {
                   <Spacer width={spacing.md} />
                   <View style={{maxWidth: width * 0.4}}>
                     <Text size={24}>{show.name}</Text>
+                    <Spacer height={spacing.sm} />
+                    <RowFavorite
+                      onPress={() =>
+                        isFavorite
+                          ? removeFavoriteShow(show)
+                          : addFavoriteShow(show)
+                      }>
+                      <Text size={16} color="caption">
+                        {show.rating.average}
+                      </Text>
+                      <Spacer width={spacing.sm} />
+                      <Icon
+                        icon={isFavorite ? 'star' : 'starOutline'}
+                        color="yellow"
+                      />
+                    </RowFavorite>
                     <Spacer height={spacing.sm} />
                     <Text color="caption">{schedule}</Text>
                     <Spacer height={spacing.lg} />

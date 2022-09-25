@@ -17,6 +17,7 @@ import {CoverProps} from './types';
 const aspectRatio = 9 / 12.5;
 const widthPercentage = 0.45;
 
+//TODO: rename to Show Cover
 const Cover = ({onPress, title, url}: CoverProps) => {
   /**
    * Hooks

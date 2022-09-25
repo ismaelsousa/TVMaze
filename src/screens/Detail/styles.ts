@@ -10,6 +10,10 @@ export const Content = styled.SafeAreaView`
 export const RowCover = styled.View`
   flex-direction: row;
 `;
+export const RowFavorite = styled.Pressable`
+  flex-direction: row;
+  align-items: center;
+`;
 
 export const RowButtonSeason = styled.Pressable`
   flex-direction: row;
