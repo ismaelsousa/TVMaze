@@ -1,6 +1,6 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
-import React from 'react';
-import {FlatList, useWindowDimensions, View} from 'react-native';
+import React, {useState} from 'react';
+import {FlatList, Platform, useWindowDimensions, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
@@ -10,6 +10,7 @@ import Icon from '../../common/components/Icon';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useDetailController from './detail.controller';
+import SeasonsModal from './localComponents/SeasonsModal';
 import {
   ContainerTitleEpisode,
   Content,
@@ -22,12 +23,17 @@ import {
 
 const DetailView: React.FC = () => {
   /**
-   * NAvigation
+   * Navigation
    */
   const {goBack} = useNavigation();
   const {
     params: {show},
   } = useRoute<DetailRouteProp>();
+
+  /**
+   * States
+   */
+  const [isModalVisible, setIsModalVisible] = useState<boolean>(false);
 
   /**
    * Theme
@@ -60,15 +66,18 @@ const DetailView: React.FC = () => {
         <FlatList
           data={episodes}
           renderItem={({item}) => (
-            <RowEpisode key={item.id}>
+            <RowEpisode
+              key={item.id}
+              onPress={() => {
+                //TODO: Handle episode without img
+              }}>
               <EpisodeCard url={item.image.medium} name={item.name} />
               <Spacer width={spacing.sm} />
               <ContainerTitleEpisode>
                 <TitleEpisode numberOfLines={1}>
                   {item.number}. {item.name}
                 </TitleEpisode>
-                <Spacer height={spacing.sm} />
-                <Text color="caption">
+                <Text size={12} color="caption">
                   {item.runtime <= 60 ? `${item.runtime}m` : '+1h'}
                 </Text>
               </ContainerTitleEpisode>
@@ -105,14 +114,20 @@ const DetailView: React.FC = () => {
                 {!!selectedSeason && (
                   <View>
                     <Spacer height={spacing.md} />
-                    <RowButtonSeason>
+                    <RowButtonSeason
+                      hitSlop={40}
+                      onPress={() => setIsModalVisible(true)}>
                       <ContentButtonSeason>
-                        <Text size={20}>Season {selectedSeason.number}</Text>
+                        <Text color="caption" size={18}>
+                          Season {selectedSeason.number}
+                        </Text>
                         <Spacer width={spacing.sm} />
-                        <Icon icon="menuDown" color={colors.onSecondary} />
+                        <Icon icon="menuDown" color={colors.caption} />
                       </ContentButtonSeason>
                     </RowButtonSeason>
-                    <Spacer height={spacing.md} />
+                    <Spacer
+                      height={Platform.OS === 'ios' ? spacing.sm : spacing.md}
+                    />
                   </View>
                 )}
               </View>
@@ -120,6 +135,13 @@ const DetailView: React.FC = () => {
           }}
         />
       </Content>
+      <SeasonsModal
+        visible={isModalVisible}
+        seasons={seasons}
+        setVisible={setIsModalVisible}
+        selectedSeason={selectedSeason}
+        setSelectedSeason={setSelectedSeason}
+      />
     </Container>
   );
 };
