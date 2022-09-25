@@ -1,15 +1,24 @@
 import {useNavigation, useRoute} from '@react-navigation/native';
 import React from 'react';
-import {FlatList, ScrollView, useWindowDimensions, View} from 'react-native';
+import {FlatList, useWindowDimensions, View} from 'react-native';
 import {useTheme} from 'styled-components/native';
 import BackButton from '../../common/components/BackButton';
 import Container from '../../common/components/Container';
 import Cover from '../../common/components/Cover';
 import EpisodeCard from '../../common/components/EpisodeCard';
+import Icon from '../../common/components/Icon';
 import Spacer from '../../common/components/Spacer';
 import Text from '../../common/components/Text';
 import useDetailController from './detail.controller';
-import {Content, RowCover, RowEpisode, TitleEpisode} from './styles';
+import {
+  ContainerTitleEpisode,
+  Content,
+  ContentButtonSeason,
+  RowButtonSeason,
+  RowCover,
+  RowEpisode,
+  TitleEpisode,
+} from './styles';
 
 const DetailView: React.FC = () => {
   /**
@@ -23,7 +32,7 @@ const DetailView: React.FC = () => {
   /**
    * Theme
    */
-  const {spacing} = useTheme();
+  const {spacing, colors} = useTheme();
   const {width} = useWindowDimensions();
 
   /**
@@ -54,15 +63,15 @@ const DetailView: React.FC = () => {
             <RowEpisode key={item.id}>
               <EpisodeCard url={item.image.medium} name={item.name} />
               <Spacer width={spacing.sm} />
-              <View>
-                <TitleEpisode>
+              <ContainerTitleEpisode>
+                <TitleEpisode numberOfLines={1}>
                   {item.number}. {item.name}
                 </TitleEpisode>
                 <Spacer height={spacing.sm} />
                 <Text color="caption">
                   {item.runtime <= 60 ? `${item.runtime}m` : '+1h'}
                 </Text>
-              </View>
+              </ContainerTitleEpisode>
             </RowEpisode>
           )}
           ItemSeparatorComponent={() => <Spacer height={spacing.md} />}
@@ -96,7 +105,13 @@ const DetailView: React.FC = () => {
                 {!!selectedSeason && (
                   <View>
                     <Spacer height={spacing.md} />
-                    <Text size={20}>Season {selectedSeason.number}</Text>
+                    <RowButtonSeason>
+                      <ContentButtonSeason>
+                        <Text size={20}>Season {selectedSeason.number}</Text>
+                        <Spacer width={spacing.sm} />
+                        <Icon icon="menuDown" color={colors.onSecondary} />
+                      </ContentButtonSeason>
+                    </RowButtonSeason>
                     <Spacer height={spacing.md} />
                   </View>
                 )}
