@@ -18,3 +18,17 @@ export const List = styled.ScrollView.attrs({
 })`
   flex: 1;
 `;
+
+export const ContainerCloseButton = styled.View`
+  padding-bottom: 50px;
+  align-items: center;
+`;
+
+export const ContentCloseButton = styled.Pressable`
+  width: 50px;
+  height: 50px;
+  background-color: ${({theme}) => theme.colors.onSecondary};
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+`;

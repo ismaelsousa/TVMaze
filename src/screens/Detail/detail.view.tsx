@@ -113,10 +113,8 @@ const DetailView: React.FC = () => {
                 </Text>
                 {!!selectedSeason && (
                   <View>
-                    <Spacer height={spacing.md} />
-                    <RowButtonSeason
-                      hitSlop={40}
-                      onPress={() => setIsModalVisible(true)}>
+                    <Spacer height={spacing.lg} />
+                    <RowButtonSeason onPress={() => setIsModalVisible(true)}>
                       <ContentButtonSeason>
                         <Text color="caption" size={18}>
                           Season {selectedSeason.number}
