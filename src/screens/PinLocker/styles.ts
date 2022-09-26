@@ -18,5 +18,9 @@ export const SkipText = styled(Text)`
   align-self: center;
   padding: 20px;
   min-height: 14px;
-  margin-bottom: 50px;
+  margin-bottom: 20px;
+`;
+
+export const Content = styled.SafeAreaView`
+  flex: 1;
 `;
