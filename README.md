@@ -66,10 +66,12 @@ Ios | Android
 
 I did it with inspiration on **Netflix**
 
-![image](https://user-images.githubusercontent.com/28990749/192162398-ea5d21bc-7213-4aa4-8982-267bf779f55a.png)
 
-[Link to Figma](https://www.figma.com/file/0jGlxxKJD82RpG9FTRfecD/TVMaze?node-id=2%3A7)
 
+![figma](https://user-images.githubusercontent.com/28990749/192382128-487ba7d3-fb7f-442c-8f9e-eb39c81e4c07.png)
+
+
+[Link to Figma](https://www.figma.com/file/0jGlxxKJD82RpG9FTRfecD/TVMaze?node-id=0%3A1)
 
 
 ## React Native
