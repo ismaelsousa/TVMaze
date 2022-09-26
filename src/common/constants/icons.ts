@@ -12,6 +12,7 @@ import starOutline from '../../assets/icons/star-outline/Vector.png';
 import person from '../../assets/icons/person/account-circle.png';
 import inbox from '../../assets/icons/inbox/Vector.png';
 import noResults from '../../assets/icons/no-results/Vector.png';
+import backspace from '../../assets/icons/backspace/backspace.png';
 
 export type NameIconTypes =
   | 'home'
@@ -27,7 +28,8 @@ export type NameIconTypes =
   | 'starOutline'
   | 'person'
   | 'inbox'
-  | 'noResults';
+  | 'noResults'
+  | 'backspace';
 
 export default {
   home,
@@ -44,4 +46,5 @@ export default {
   person,
   inbox,
   noResults,
+  backspace,
 };
