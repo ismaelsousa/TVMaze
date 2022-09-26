@@ -50,7 +50,10 @@ const Routes = () => {
   }, [addListener, handleRouteChange, removeListener]);
 
   useEffect(() => {
-    if (appState === 'inactive' && onPinLockerScreen === false) {
+    if (
+      (appState === 'inactive' || appState === 'background') &&
+      onPinLockerScreen === false
+    ) {
       dispatch(StackActions.push('PinLocker'));
     }
   }, [appState, dispatch, getState, onPinLockerScreen, reset]);
