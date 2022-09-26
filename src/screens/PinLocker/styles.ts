@@ -15,7 +15,8 @@ export const styles = StyleSheet.create({
 });
 
 export const SkipText = styled(Text)`
-  position: absolute;
-  bottom: 50px;
   align-self: center;
+  padding: 20px;
+  min-height: 14px;
+  margin-bottom: 50px;
 `;

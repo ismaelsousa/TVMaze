@@ -8,6 +8,7 @@ import {useTheme} from 'styled-components/native';
 import {SkipText, styles} from './styles';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
 import usePinLockerController from './pin.locker.controller';
+import {Alert, View} from 'react-native';
 
 const PinLockerView: React.FC = () => {
   const {colors} = useTheme();
@@ -46,6 +47,7 @@ const PinLockerView: React.FC = () => {
   return (
     <Container>
       <PINCode
+        // styleMainContainer={{backgroundColor: 'red'}}
         touchIDDisabled={true}
         key={'pin'}
         status={pinStatus}
@@ -80,13 +82,22 @@ const PinLockerView: React.FC = () => {
         buttonComponentLockedPage={() => null}
       />
       {pinStatus === 'choose' && (
-        <SkipText color="brand" size={16} onPress={setToNotAskToSetPinAgain}>
+        <SkipText
+          color="brand"
+          size={16}
+          onPress={() =>
+            Alert.alert(
+              '🚧 Are you sure?',
+              'This prevents unauthorized access.',
+              [
+                {text: 'cancel'},
+                {onPress: setToNotAskToSetPinAgain, text: 'proceed'},
+              ],
+            )
+          }>
           Skip
         </SkipText>
       )}
-      {/**
-       * //TODO: add a radio button to not ask to enter pin code again next time
-       */}
     </Container>
   );
 };
