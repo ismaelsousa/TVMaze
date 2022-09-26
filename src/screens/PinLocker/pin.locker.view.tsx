@@ -1,7 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useCallback, useEffect} from 'react';
 import Container from '../../common/components/Container';
 
-import PINCode from '@haskkor/react-native-pincode';
+import PINCode, {
+  resetPinCodeInternalStates,
+} from '@haskkor/react-native-pincode';
 import {useTheme} from 'styled-components/native';
 import {SkipText, styles} from './styles';
 import useMyNavigation from '../../common/hooks/useMyNavigation';
@@ -9,16 +11,33 @@ import usePinLockerController from './pin.locker.controller';
 
 const PinLockerView: React.FC = () => {
   const {colors} = useTheme();
-  const {navigate} = useMyNavigation();
+  const {canGoBack, replace, goBack} = useMyNavigation();
 
   const {loading, pinStatus, setToNotAskToSetPinAgain, shouldNavigate} =
     usePinLockerController();
 
+  /**
+   * Callbacks
+   */
+  const handleNavigate = useCallback(async () => {
+    try {
+      await resetPinCodeInternalStates();
+      if (canGoBack()) {
+        goBack();
+      } else {
+        replace('BottomTab');
+      }
+    } catch (error) {}
+  }, [canGoBack, goBack, replace]);
+
+  /**
+   * Effects
+   */
   useEffect(() => {
     if (shouldNavigate) {
-      navigate('BottomTab');
+      handleNavigate();
     }
-  }, [navigate, shouldNavigate]);
+  }, [shouldNavigate, handleNavigate]);
 
   if (loading || shouldNavigate) {
     return <Container />;
@@ -27,10 +46,10 @@ const PinLockerView: React.FC = () => {
   return (
     <Container>
       <PINCode
+        touchIDDisabled={true}
+        key={'pin'}
         status={pinStatus}
-        finishProcess={_ => {
-          navigate('BottomTab');
-        }}
+        finishProcess={handleNavigate}
         numbersButtonOverlayColor={colors.brand /** When pressed */}
         stylePinCodeButtonCircle={{backgroundColor: colors.surface}}
         stylePinCodeTextTitle={styles.fontWeightBold}
@@ -66,7 +85,7 @@ const PinLockerView: React.FC = () => {
         </SkipText>
       )}
       {/**
-       * TODO: add a radio button to not ask to enter pin code again next time
+       * //TODO: add a radio button to not ask to enter pin code again next time
        */}
     </Container>
   );

@@ -8,6 +8,7 @@ declare global {
     BottomTab?: NavigatorScreenParams<BottomTabParamList>;
     Detail: {show: ShowModel};
     Person: {person: PersonModel};
+    PinLocker: {onPinLocker: boolean};
   };
 
   /**
