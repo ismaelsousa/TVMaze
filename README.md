@@ -6,6 +6,11 @@ An app to search shows, people, and favorites
 
 ## Features
 
+## Pin code
+
+Ios | Android
+:-: | :-:
+<video src='https://user-images.githubusercontent.com/28990749/192304814-47d91785-b7b1-4fc9-a2ed-e3cb0d24c2da.mov' width=180/> | <video src='https://user-images.githubusercontent.com/28990749/192304751-39532a9f-843c-4c94-9ddf-eb1d048e8a7b.mov' width=180/>
 
 ### Show list with paging scheme
 
@@ -147,11 +152,12 @@ TVMaze
 
 
 
-
+### Releases
 [Releases](https://github.com/ismaelsousa/TVMaze/releases)
 
+### PR
 
-
+PR https://github.com/ismaelsousa/TVMaze/pull/1
 
 
 
