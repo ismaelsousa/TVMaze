@@ -107,7 +107,7 @@ Model–view–viewmodel (MVVM)
 
 [![Watch the video](https://user-images.githubusercontent.com/28990749/192161892-567a1e12-ed46-4f74-87bf-fbe99bb9513a.png)](https://youtu.be/RGRfXh54d9U)
 
-[Whatch the video about mvvm | Portuguese](https://youtu.be/RGRfXh54d9U)
+[Watch the video about mvvm | Portuguese](https://youtu.be/RGRfXh54d9U)
 
 
 ```plainText
